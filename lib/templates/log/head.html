@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="./../../stylesheets/screen.css" type="text/css" media="screen, projection">
+    <link rel="stylesheet" href="./../../stylesheets/print.css" type="text/css" media="print"> 
+    <!--[if lt IE 8]>
+      <link rel="stylesheet" href="./../../stylesheets/ie.css" type="text/css" media="screen, projection">
+    <![endif]-->    
+  </head>
+  <body>
+    <div id="header" class='container'>
+      <h2><%= title %></h2>
+    </div>
+    <div class='container'>
+      <div class="span-6">
+    		Request Timestamp: <span class='date'><%= timestamp %></span>
+    	</div>
+    	<div class="span-16">
+    		Request Duration: <span class='duration'><%= duration %></span>s<br/>
+    		Total Queries: <span><%= total_queries %></span><br/>
+    		Average Query Duration: <span class='duration'><%= average_duration %></span><br/>
+    		Duplicate Queries: <span class='duplicates'><%= duplicate_queries %></span>
+    	</div>
+    	<div class="last">
+    		<a href="<%= index %>">back</a>
+    	</div> 
+    </div>         
+    <div class='container'>
+      <h2> Query list</h2> 
+      <table id="queries"> 
+        <thead>
+          <tr>
+            <th class='span-1'>Order</th>
+            <th class='span-14'>URL</th>
+            <th class='span-1'>Duration</th>
+            <th>Keys</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- query partial -->
+        <!-- tail partial -->    
+  
