@@ -20,6 +20,8 @@ function(head, row, req, info) {
           duration : log.duration,
           amount_queries : log.amount_queries,
           duplicates : log.amount_duplicates,
+          db_time : log.db_time,
+          potential_savings : log.potential_savings,
           link : showPath('log', row.id),
         });
       } else {
