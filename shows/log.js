@@ -29,6 +29,20 @@ function(doc, req) {
     duplicate_queries : duplicates.length,
     index : listPath('index','recent-logs',{descending:true, limit:15})
   });
+
+  var piechart_head = template(lib.templates.log.piechart_head, {});
+  var piechart = "";
+   doc.queries.forEach(function(query, index){
+     piechart += template(lib.templates.log.piechart, {
+       index : index,
+       method : query.method.toUpperCase(),
+       duration : Math.round(query.duration*1000),
+       uri : query.uri
+     });
+   });
+  var piechart_tail = template(lib.templates.log.piechart_tail, {});
+
+  var query_head = template(lib.templates.log.query_head, {});
   var queries = "";
    doc.queries.forEach(function(query, index){
      queries += template(lib.templates.log.query, {
@@ -38,9 +52,10 @@ function(doc, req) {
        rowClass : ((index%2 == 0) ? 'even' : 'odd'),
        uri : query.uri,
        keys : ((query['payload'] && query['payload']['keys']) ? query.payload.keys.join(', ') : '')
-     })
-   })
-  var tail = template(lib.templates.log.tail, {})
+     });
+   });
+  var query_tail = template(lib.templates.log.query_tail, {});
+  var tail = template(lib.templates.log.tail, {});
   
-  return (head + queries + tail )
+  return (head + piechart_head + piechart + piechart_tail + query_head + queries + query_tail + tail )
 }
